@@ -20,8 +20,6 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(response => {
-        console.log(response);
-        console.log(response.data.articles.bootstrap);
         let cardsContainer = document.querySelector(".cards-container");
         for (i = 0; i < response.data.articles.bootstrap.length; i++) {
             cardsContainer.appendChild(createCard(response.data.articles.bootstrap[i]));
