@@ -9,12 +9,10 @@
 //    <div class="tab">topic here</div>
 
 
-let data = [];
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
     .then(response => {
-        data = response.data.topics;
         let topicsElement = document.querySelector(".topics");
-        topicsElement.appendChild(createTopics(data));
+        topicsElement.appendChild(createTopics(response.data.topics));
     })
     .catch(error => {
         console.error(error);
@@ -22,14 +20,13 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
 
 function createTopics(data) {
     
-    // console.log(data);
     let trends = [];
-    let topics = document.createElement("div");
+    let topics = document.querySelector(".topics");
     for (let i = 0; i < data.length; i++){
         trends.push(document.createElement("div"));
     }
     for (let i = 0; i < trends.length; i++){
-        trends[i].textContent = data[i].textContent;
+        trends[i].textContent = data[i];
         trends[i].classList.add("tab");
         topics.appendChild(trends[i]);
       }
@@ -37,7 +34,3 @@ function createTopics(data) {
 
     
 }
-
-// let topicsElement = document.querySelector(".topics");
-// console.log(data);
-// topicsElement.appendChild(createTopics(data));
